@@ -36,6 +36,6 @@ for organizations in getRequest:
 print (orgId)
 
 # 8. Optional check: Print all the organizations to make sure that you have chosen the right name.
-# print(json.dumps(response, indent=2, sort_keys=True))
+#print(json.dumps(getRequest, indent=2, sort_keys=True))
 
 
