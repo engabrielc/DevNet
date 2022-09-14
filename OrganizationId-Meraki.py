@@ -1,36 +1,41 @@
-#Script to return the "Organization ID" from a specific "Organization" in Cisco Meraki by Enrique Gabriel
+#Script to return the "Organization ID" from Cisco Meraki by Enrique Gabriel
 
 # 1. Import "requests" and "json" to make API calls and handle the data in JSON format.
 
 import requests
 import json
 
-# 2. Define the URL based on the data that you want to get. Always use the Meraki's documentation.
+# 2. Define the base URL for the API call. Always refer to the Meraki documentation.
 
 url = "https://api.meraki.com/api/v1/organizations"
 
-# 3. Write down the API Key of your account. If you don't have it, create a new one.
+# 3. Ask for the API Key. This is going to be the value for "X-Cisco-Meraki-API-Key" in the header.
+
+apiKey = input("Please enter the API Key: ")
 
 headers = {
-  'X-Cisco-Meraki-API-Key': 'c555ba67e631fc9a95fbd4395101f0eecd363d0b'
+  'X-Cisco-Meraki-API-Key': apiKey
 }
 
 # 4. Make the GET request
 
-response = requests.get( url, headers=headers).json()
+getRequest = requests.get( url, headers=headers).json()
 
-# 5. Optional sanity check: Print all the organizations to make sure that the script is working fine.
+# 5. Ask for the Organization name. 
 
-print(json.dumps(response, indent=2, sort_keys=True))
+orgName = input("Please enter the Organization name: ")
 
-# 6. Go through every organization until you get the specific match based on the name you are looking for.
+# 6. Go through every organization until you get the specific match based on the name you have provided. This will return the ID.
 
-for response_org in response:
-    if response_org["name"] == "Test-org":
-        orgId = response_org["id"]
+for organizations in getRequest:
+    if organizations["name"] == orgName:
+        orgId = organizations["id"]
 
- # 7. Print the ID       
+ # 7. Print the Organization ID       
 
 print (orgId)
+
+# 8. Optional check: Print all the organizations to make sure that you have chosen the right name.
+# print(json.dumps(response, indent=2, sort_keys=True))
 
 
