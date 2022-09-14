@@ -25,7 +25,7 @@ getRequest = requests.get( url, headers=header).json()
 
 orgName = input("Please enter the Organization name:  ")
 
-# 6. Go through every organization until you get the specific match based on the name you have provided. This will return the exact ID.
+# 6. Goes through every organization until it gets the specific match based on the name you have provided. This will return the exact ID.
 
 for organizations in getRequest:
     if organizations["name"] == orgName:
