@@ -1,5 +1,13 @@
 #!/usr/bin/env python
 
+'''
+For Linux, install the tool by doing this: 
+sudo apt-get install graphviz libgraphviz-dev pkg-config
+pip install pygraphviz
+For testing purposes, do: sudo python3 diagram.py -l admin --password !v3G@!4@Y -u https://sandboxapicdc.cisco.com -o test.png
+'''
+
+
 from acitoolkit.acitoolkit import *
 import pygraphviz as pgv
 import sys
