@@ -1,5 +1,4 @@
 # ACI Diagram generator
-# Enrique Gabriel
 
 This is a simple tool to connect to a Cisco ACI Application Policy Infrastructure Controller using the [acitoolkit](http://github.com/datacenter/acitoolkit) library, interrogate the configuration and generate logical diagrams. 
 
