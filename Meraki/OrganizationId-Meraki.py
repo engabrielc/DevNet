@@ -1,4 +1,4 @@
-#Script to get the "Organization ID" from Cisco Meraki by Enrique Gabriel
+#Script to get the "Organization ID" from Cisco Meraki by Enrique Gabriel.
 
 # 1. Import "requests" and "json" to make API calls and handle the data in JSON format.
 
