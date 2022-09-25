@@ -1,6 +1,6 @@
 # Python script to configure NTP settings on Cisco IOS, by Enrique Gabriel.
 
-# Do not forget to install Netmiko (pip install Netmiko).
+# Do not forget to install Netmiko (pip install Netmiko)
 
 from netmiko import ConnectHandler
 
