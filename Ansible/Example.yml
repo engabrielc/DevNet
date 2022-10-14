@@ -1,0 +1,8 @@
+---
+- name: Get information from the Linux Server
+  hosts: localhost
+  tasks:
+   - name: get system status
+     shell: uname -a > /home/enrique/Desktop/output.txt
+   - name: print my username
+     shell: whoami >> /home/enrique/Desktop/output.txt
