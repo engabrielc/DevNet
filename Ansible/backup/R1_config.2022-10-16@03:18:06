@@ -1,0 +1,173 @@
+Building configuration...
+
+Current configuration : 1791 bytes
+!
+! Last configuration change at 02:38:41 UTC Sun Oct 16 2022 by enrique
+!
+version 16.5
+service timestamps debug datetime msec
+service timestamps log datetime msec
+platform qfp utilization monitor load 80
+no platform punt-keepalive disable-kernel-core
+platform console serial
+!
+hostname Core1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+!
+!
+!
+!
+!
+!
+
+ip domain name example.com
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+subscriber templating
+! 
+! 
+! 
+! 
+!
+!
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+license udi pid CSR1000V sn 9G91ZZPWC2B
+diagnostic bootup level minimal
+!
+spanning-tree extend system-id
+!
+!
+username enrique privilege 15 secret 5 $1$lxCJ$zy1kl6aJMeiYfMPzRroJl0
+!
+redundancy
+!
+!
+!
+!
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+! 
+! 
+!
+!
+interface Loopback30
+ no ip address
+!
+interface GigabitEthernet1
+ ip address 192.168.13.2 255.255.255.0
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet2
+ no ip address
+ shutdown
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet3
+ no ip address
+ shutdown
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+interface GigabitEthernet4
+ no ip address
+ shutdown
+ negotiation auto
+ no mop enabled
+ no mop sysid
+!
+
+threat-visibility
+!
+virtual-service csr_mgmt
+!
+ip forward-protocol nd
+ip http server
+ip http authentication local
+ip http secure-server
+ip route 0.0.0.0 0.0.0.0 GigabitEthernet1
+ip route 0.0.0.0 0.0.0.0 192.168.13.1
+!
+ip ssh version 2
+ip ssh server algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+ip ssh client algorithm encryption aes128-ctr aes192-ctr aes256-ctr
+!
+!
+!
+!
+!
+control-plane
+!
+ !
+ !
+ !
+ !
+!
+!
+!
+!
+banner login ^C
+Network Automation with Ansible by ^C
+!
+line con 0
+ stopbits 1
+line vty 0 4
+ login local
+ transport input telnet ssh
+!
+!
+!
+!
+!
+!
+end

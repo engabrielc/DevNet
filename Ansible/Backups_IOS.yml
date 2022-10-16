@@ -1,0 +1,28 @@
+---
+
+- name: Getting the backups
+
+  hosts: routers
+
+  tasks:
+   
+   - name: Backup current router config (ios)
+     cisco.ios.ios_config:
+       backup: yes
+     register: backup_ios_location
+     
+
+#Example of the settings that you should add to the "hosts" file.
+
+#[routers]
+#R1 ansible_host=192.168.13.2
+#R2 ansible_host=192.168.13.3
+
+#[routers:vars]
+#ansible_user=enrique   
+#ansible_password=enrique       
+#ansible_connection=network_cli
+#ansible_network_os=ios
+#ansible_port=22
+
+#Note: You should not store credentials in the "hosts" file. Please use Vault or any other method related to secrets management.
