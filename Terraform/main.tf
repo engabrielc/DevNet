@@ -127,4 +127,3 @@ resource "aws_instance" "WebServer" {
 
         tags = {Name= "WebServer"}        
 }
-
