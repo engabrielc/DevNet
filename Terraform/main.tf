@@ -2,7 +2,8 @@
 
 provider "aws" {
   region     = "us-east-1"
-  #Add access keys
+
+  #Use a Secrets Manager to provide your Access/Secret Keys .
   
 }
 
@@ -136,3 +137,5 @@ resource "aws_instance" "WebServer" {
 
         tags = {Name= "WebServer"}        
 }
+
+
