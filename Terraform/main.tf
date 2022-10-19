@@ -2,8 +2,7 @@
 
 provider "aws" {
   region     = "us-east-1"
-  access_key = "AKIAQXPEGRZADV7EE2HD"
-  secret_key = "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"
+  
 }
 
 #VPC
@@ -72,6 +71,15 @@ ingress {
     
   }
 
+  ingress {
+    description      = "SSH"
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = ["0.0.0.0/0"]
+    
+  }
+
   egress {
     from_port        = 0
     to_port          = 0
@@ -119,9 +127,9 @@ resource "aws_instance" "WebServer" {
 
   user_data = <<-EOF
                 #!/bin/bash
-                sudo apt update -y
-                sudo apt install apache2 -y
-                sudo systemctl start apache2
+                sudo yum update -y
+                sudo yum install httpd -y
+                sudo systemctl start httpd
                 sudo bash -c 'echo This is your Website > /var/www/html/index.html'
                 EOF
 
