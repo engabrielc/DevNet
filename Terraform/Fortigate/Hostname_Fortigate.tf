@@ -7,7 +7,7 @@ terraform {
   }
 }
 provider "fortios" {
-  hostname = "fortigate-aws.enriquegabriel.click"
+  hostname = "fortigate.enriquegabriel.com"
   token    = var.token
   insecure = "true"
 }
@@ -18,3 +18,4 @@ variable "token" {
 resource "fortios_system_setting_global" "Hostname" {
   hostname       = "myFortigate-Test"
 }
+
