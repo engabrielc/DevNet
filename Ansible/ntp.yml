@@ -1,0 +1,14 @@
+- name: Configure NTP
+  hosts: routers
+  tasks:
+   - name: Delete existing NTP servers
+     cisco.ios.ios_ntp_global:
+        state: deleted
+   - name: Adding NTP Servers
+     cisco.ios.ios_ntp_global:
+        config:
+            servers:
+              - server: 1.1.1.1
+                version: 2
+              - server: 2.2.2.2
+                version: 2
