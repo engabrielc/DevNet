@@ -1,14 +1,24 @@
-- name: Configure NTP
+- name: Configure NTP and Timezone
   hosts: routers
   tasks:
-   - name: Delete existing NTP servers
-     cisco.ios.ios_ntp_global:
+    - name: Delete existing NTP servers
+      cisco.ios.ios_ntp_global:
         state: deleted
-   - name: Adding NTP Servers
-     cisco.ios.ios_ntp_global:
+    - name: Adding NTP Servers
+      cisco.ios.ios_ntp_global:
         config:
-            servers:
-              - server: 1.1.1.1
-                version: 2
-              - server: 2.2.2.2
-                version: 2
+          servers:
+            - server: 1.1.1.1
+              version: 2
+            - server: 2.2.2.2
+              version: 2
+    - name: Configure Timezone to UTC-5
+      cisco.ios.ios_config:
+        lines:
+          - clock timezone UTC -5
+    - name: Remove summer time
+      cisco.ios.ios_config:
+        lines:
+          - no clock summer-time CDT recurring
+
+
