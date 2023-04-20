@@ -1,0 +1,20 @@
+- name: Configure NTP and Timezone
+  hosts: switches
+  tasks:
+    - name: Delete existing NTP servers
+      cisco.nxos.nxos_ntp_global:
+        state: deleted
+    - name: Adding NTP Servers
+      cisco.nxos.nxos_ntp_global:
+        config:
+          servers:
+            - server: 1.1.1.1
+              key_id: 2
+            - server: 2.2.2.2
+              key_id: 2
+    - name: Configure Timezone to UTC-5
+      cisco.nxos.nxos_command:
+        commands:
+          - configure terminal
+          - command: clock timezone UTC -5 0 
+          - command: no clock summer-time 
