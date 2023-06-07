@@ -130,7 +130,9 @@ resource "aws_instance" "WebServer" {
   instance_type = "c6i.xlarge"
   availability_zone = "ap-south-1a"
   key_name = "ztna-key"
-  name = "Virtual FortiGate"
+  tags = {
+    Name = "Virtual FortiGate"
+  }
 
   network_interface {
     device_index = 0
