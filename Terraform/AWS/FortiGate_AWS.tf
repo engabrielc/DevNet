@@ -1,7 +1,8 @@
+
 #Provider
 
 provider "aws" {
-  region     = "us-east-1"
+  region     = "ap-south-1"
   access_key = var.access_key
   secret_key = var.secret_key
 }
@@ -50,7 +51,7 @@ resource "aws_route_table" "Production" {
 resource "aws_subnet" "Public" {
   vpc_id     = aws_vpc.Production.id
   cidr_block = "10.200.0.0/24"
-  availability_zone = "us-east-1a"
+  availability_zone = "ap-south-1a"
 
   tags = {
     Name = "Public"
@@ -117,32 +118,33 @@ resource "aws_eip" "Public" {
   vpc                       = true
   network_interface         = aws_network_interface.Web_Server.id
   associate_with_private_ip = "10.200.0.7"
-  depends_on = [aws_internet_gateway.Production-igw]
+  depends_on = [aws_internet_gateway.Production-igw, aws_instance.WebServer ]
+  
   
 }
 
 #EC2 (WebServer)
 
 resource "aws_instance" "WebServer" {
-  ami           = "ami-026b57f3c383c2eec"
-  instance_type = "t2.micro"
-  availability_zone = "us-east-1a"
-  key_name = "FortigateTest"
+  ami           = "ami-02f3189a4ec9e039e"
+  instance_type = "c6i.xlarge"
+  availability_zone = "ap-south-1a"
+  key_name = "ztna-key"
 
   network_interface {
     device_index = 0
     network_interface_id = aws_network_interface.Web_Server.id
   }
 
-  user_data = <<-EOF
-                #!/bin/bash
-                sudo yum update -y
-                sudo yum install httpd -y
-                sudo systemctl start httpd
-                sudo bash -c 'echo This is your Website > /var/www/html/index.html'
-                EOF
+#   user_data = <<-EOF
+#                 #!/bin/bash
+#                 sudo yum update -y
+#                 sudo yum install httpd -y
+#                 sudo systemctl start httpd
+#                 sudo bash -c 'echo This is your Website > /var/www/html/index.html'
+#                 EOF
 
-        tags = {Name= "WebServer"}        
+#         tags = {Name= "WebServer"}        
 }
 
 #Output
