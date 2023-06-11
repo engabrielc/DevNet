@@ -1,0 +1,21 @@
+#Script to gather information (hostname and interfaces) from IOS XE
+
+- name: Retrieve Device Information
+  hosts: routers
+  tasks:
+  
+    - name: Gather Hostname
+      cisco.ios.ios_hostname:
+        state: gathered
+      register: hostname_result
+      
+    - name: Gather Interface Information
+      cisco.ios.ios_interfaces:
+        state: gathered
+      register: interfaces_result
+
+    - name: Print Device Information
+      debug:
+        msg: 
+          - "{{ hostname_result.gathered }}"
+          - "{{ interfaces_result.gathered }}"
