@@ -19,3 +19,20 @@
         msg: 
           - "{{ hostname_result.gathered }}"
           - "{{ interfaces_result.gathered }}"
+          
+ # Another options is the following:
+   
+- name: Retrieve Device Information
+  hosts: routers
+  tasks:
+  
+    - name: Getting Interfaces and Hostname
+      cisco.ios.ios_command:
+        commands:
+        - show ip int brief | in up
+        - show run | in hostname
+      register: config
+
+    - name: Display result to terminal window
+      debug:
+        var: config.stdout_lines
