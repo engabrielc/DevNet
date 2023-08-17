@@ -1,0 +1,24 @@
+---
+- name: Gather Information from Cisco Devices
+  hosts: IOS
+  gather_facts: true
+  ignore_unreachable: true
+  vars:
+    ansible_connection: ansible.netcommon.network_cli
+    ansible_network_os: cisco.ios.ios
+    ansible_become: true
+    ansible_become_method: enable
+  vars_files:
+    - login.yml
+  tasks:
+    - name: Display Gathered Facts
+      debug:
+        var: "{{ item }}"
+      loop:
+        - ansible_facts.net_hostname
+        - ansible_facts.net_iostype
+        - ansible_facts.net_model
+        - ansible_facts.net_serialnum
+        - ansible_facts.net_version
+        - ansible_facts.net_neighbors
+        - ansible_facts.net_interfaces
