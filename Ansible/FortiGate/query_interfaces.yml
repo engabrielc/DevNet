@@ -1,0 +1,30 @@
+---
+- name: Query Interfaces
+  hosts: FortiGates
+  collections:
+    - fortinet.fortios
+  connection: httpapi
+  vars:
+    ansible_httpapi_use_ssl: yes
+    ansible_httpapi_validate_certs: no
+    ansible_httpapi_port: 443
+    interface_names:
+      - Loopback100
+      - port4
+      - port5  # Add more interface names as needed
+
+  tasks:
+    - name: Getting interface configuration
+      fortios_configuration_fact:
+        vdom: "X"
+        selector: "system_interface"
+        filters:
+          - "name=={{ item }}"
+      register: fortios_output
+      with_items: "{{ interface_names }}"
+      loop_control:
+        loop_var: item
+
+    - name: Display output
+      debug:
+        var: fortios_output
