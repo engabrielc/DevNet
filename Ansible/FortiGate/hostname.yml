@@ -1,0 +1,27 @@
+---
+- name: Configure hostname
+  hosts: FortiGate
+  collections:
+    - fortinet.fortios
+  connection: httpapi
+  vars:
+    vdom: "root"
+    ansible_httpapi_use_ssl: yes
+    ansible_httpapi_validate_certs: no
+    ansible_httpapi_port: 443
+  tasks:
+    - name: Configuring hostname.
+      fortios_system_global:
+        vdom: "{{ vdom }}"
+        system_global:
+          hostname: "Test-Hostname"
+
+
+#These are the recommended settings in the inventory file.
+#[FortiGate]
+#192.168.0.1
+#[FortiGate:vars]
+#ansible_user="username"
+#ansible_password="password"
+#ansible_network_os=fortinet.fortios.fortios
+#ansible_python_interpreter=/usr/bin/python3
