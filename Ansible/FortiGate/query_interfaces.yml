@@ -19,12 +19,10 @@
         vdom: "X"
         selector: "system_interface"
         filters:
-          - "name=={{ item }}"
+          - name=="{{ item }}"
       register: fortios_output
       with_items: "{{ interface_names }}"
-      loop_control:
-        loop_var: item
-
+      
     - name: Display output
       debug:
         var: fortios_output
