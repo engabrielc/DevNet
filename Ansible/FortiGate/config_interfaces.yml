@@ -1,0 +1,55 @@
+---
+- name: Configure interfaces
+  hosts: FortiGates
+  collections:
+    - fortinet.fortios
+  connection: httpapi
+  vars:
+    ansible_httpapi_use_ssl: yes
+    ansible_httpapi_validate_certs: no
+    ansible_httpapi_port: 443
+
+  tasks:
+    - name: Configuring Loopback100
+      fortios_system_interface:
+        vdom: "X"
+        state: "present"
+        system_interface:
+          name: "Loopback100"
+          alias: "TEST"
+          type: "loopback"
+          role: "lan"
+          ip: "10.255.254.254/255.255.255.255"
+          allowaccess: "ping"
+          status: "up"
+          description: "Configured by Ansible - Enrique"
+          vdom: "X"
+      register: fortios_output_100
+
+    - name: Configuring Loopback200
+      fortios_system_interface:
+        vdom: "X"
+        state: "present"
+        system_interface:
+          name: "Loopback200"
+          alias: "TEST_2"
+          type: "loopback"
+          role: "lan"
+          ip: "172.255.254.254/255.255.255.255"
+          allowaccess: "ping"
+          status: "up"
+          description: "Configured by Ansible - Enrique"
+          vdom: "X"
+      register: fortios_output_200
+
+    - name: Combine Outputs
+      set_fact:
+        combined_output: "{{ [fortios_output_100, fortios_output_200] }}"
+
+    - name: Filter Output
+      set_fact:
+        filtered_output: "{{ combined_output | json_query('[].meta.[mkey, status]') }}"
+
+    - name: Display filtered output
+      debug:
+        var: filtered_output
