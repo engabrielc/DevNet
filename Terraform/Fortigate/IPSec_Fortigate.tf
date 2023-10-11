@@ -28,6 +28,10 @@ resource "fortios_vpnipsec_phase1interface" "VPN_NAME" {
     dhgrp                = "14"
     keylife              = 28800
     net_device           = "disable"
+    ike_version          = "2"
+    mode                 = "main"
+    idle_timeout         = "disable"
+
 }
 #VPN phase 2
 resource "fortios_vpnipsec_phase2interface" "VPN_NAME" {
@@ -43,6 +47,7 @@ resource "fortios_vpnipsec_phase2interface" "VPN_NAME" {
     keylife_type         = "seconds"
     keylifeseconds       = 3600
     auto_negotiate       = "enable"
+    pfs                  = "enable"
 }
 #Firewall policy to allow traffic from the IPSec tunnel to the LAN
 resource "fortios_firewall_policy" "fw-policy" {
