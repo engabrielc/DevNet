@@ -1,0 +1,44 @@
+---
+- name: Configure Firewall Policies
+  hosts: XXXX
+  collections:
+    - fortinet.fortios
+  connection: httpapi
+  vars:
+    ansible_httpapi_use_ssl: yes
+    ansible_httpapi_validate_certs: no
+    ansible_httpapi_port: 443
+
+  tasks:
+    - name: Create General Allow Policy
+      fortios_firewall_policy:
+        vdom: "XXXX"
+        state: present
+        firewall_policy:
+          policyid: "XXXX"
+          name: "PERMI ANY EXAMPLE"
+          action: "accept"
+          srcintf:
+            - name: "XXXX"  
+          dstintf:
+            - name: "any"
+          srcaddr:
+            - name: "10.0.0.0/8" 
+            - name: "172.16.0.0/12" 
+            - name: "192.168.0.0/16" 
+          dstaddr:
+            - name: "all"
+          service:
+            - name: "ALL"
+          comments: "Example Rule"
+          schedule: "always"
+          status: "enable"
+          logtraffic: "all"
+          
+          
+
+
+
+
+     
+
