@@ -1,0 +1,26 @@
+---
+- name: NXOS Backup
+  hosts: NXOSprod
+  gather_facts: no
+  ignore_unreachable: true
+  collections: 
+    - cisco.nxos.nxos
+  vars: 
+    ansible_connection: ansible.netcommon.network_cli
+    ansible_network_os: cisco.nxos.nxos
+    ansible_become: yes
+    ansible_become_method: enable
+    date_time: "{{ lookup('pipe', 'date +%Y%m%d_%H%M') }}"
+  vars_files:
+    login.yml
+
+  tasks:
+    - name: nxos
+      cisco.nxos.nxos_config: 
+        backup: yes
+        backup_options:
+          filename: nxos_backup_{{ inventory_hostname }}_{{ date_time }}.txt
+          dir_path: /sftp/nxos/
+
+      register: output
+    - debug: var=output
