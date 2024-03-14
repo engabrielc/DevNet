@@ -1,0 +1,30 @@
+---
+- name: FortiOS backup
+  hosts: fortiOSprod
+  connection: httpapi
+  collections:
+   - fortinet.fortios
+  vars:
+   vdom: "root"
+   ansible_httpapi_use_ssl: yes
+   ansible_httpapi_validate_certs: no
+   ansible_httpapi_port: 443
+   ansible_command_timeout: 60
+   ansible_network_os: fortinet.fortios.fortios
+   date_time: "{{ lookup('pipe', 'date +%Y%m%d_%H%M') }}"
+  gather_facts: no
+  vars_files:
+    login.yml
+
+  tasks:
+    - name: Backup a virtual domain.
+      fortios_monitor_fact:
+        selector: 'system_config_backup'
+        params:
+            scope: 'global'
+      register: backupinfo
+    
+    - name: Save the backup information.
+      ansible.builtin.copy:
+        content: '{{ backupinfo.meta.raw }}'
+        dest: '/sftp/fortios/fortiOS_backup_{{ inventory_hostname }}_{{ date_time }}.conf'[root@vm-hostname Confbak]# 
