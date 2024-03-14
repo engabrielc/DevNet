@@ -1,0 +1,26 @@
+---
+- name: IOSXR Backup
+  hosts:
+  - IOSXRprod
+  gather_facts: no
+  ignore_unreachable: true
+  collections:
+    - cisco.iosxr
+  vars:
+    ansible_connection: ansible.netcommon.network_cli
+    ansible_network_os: cisco.iosxr.iosxr
+    ansible_become: yes
+    ansible_become_method: enable  # ansible_become_method: sudo
+    date_time: "{{ lookup('pipe', 'date +%Y%m%d_%H%M') }}"
+  vars_files:
+    login.yml
+
+  tasks:
+    - name: backup config
+      cisco.iosxr.iosxr_config:
+        backup: yes
+        backup_options:
+          filename: iosxr_bak_{{ inventory_hostname }}_{{ date_time }}.txt
+          dir_path: /sftp/ios/
+      register: output
+    - debug: var=output
