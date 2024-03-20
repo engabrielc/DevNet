@@ -1,0 +1,8 @@
+[default] 
+client_secret = abcdEcxxxxx123FNkBxy456z25qx9Yp5CPUxlEfQeTDkfh4QA=I 
+host = akab-lmn7xxxxx53w7qrs10cxy-nfkxaa4lfk3kd6ym.luna.akamaiapis.net 
+access_token = akab-zyx98xxxxxsbli4k-e7jf5ikib5jknes3
+client_token = akab-nomoxxxxxuc4422-fa2xznerxrm3teg7
+
+
+#https://techdocs.akamai.com/developer/docs/set-up-authentication-credentials#add-credential-to-edgerc-file
