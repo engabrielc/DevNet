@@ -1,0 +1,4 @@
+test-delete-zone-1.com
+test-delete-zone-2.com
+test-delete-zone-3.com
+test-delete-zone-4.com
