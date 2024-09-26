@@ -1,0 +1,19 @@
+'vsvip': {
+    'url': 'https://example.com/api/vsvip/vsvip-12345',
+    'name': 'example-vip1',
+    'vip': [{
+        'ip_address': {
+            'addr': '192.168.1.1',
+        }
+    }]
+}
+
+'vsvip': {
+    'url': 'https://example.com/api/vsvip/vsvip-23456',
+    'name': 'example-vip2',
+    'vip': [{
+        'ip_address': {
+            'addr': '192.168.1.2',
+        }
+    }]
+}
