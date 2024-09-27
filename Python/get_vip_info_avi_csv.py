@@ -1,4 +1,4 @@
-#This script connects to the AVI controller to retrieve the Tenant, VIP Name, IP and Status for all the VIPs.
+#This script connects to the AVI controller to retrieve the Tenant, VIP name, IP, and status for all VIPs.
  
 
 import requests
