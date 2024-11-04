@@ -6,7 +6,7 @@ import ssl
 import certifi
 
 # AVI Controller Information
-controller_ip = input("Enter the AVI Controller IP (e.g., 10.5.107.33) or FQDN: ")
+controller_ip = input("Enter the AVI Controller IP (e.g., 10.200.0.12) or FQDN: ")
 controller_url = f'https://{controller_ip}'
 username = input("Enter your AVI username: ")
 password = getpass.getpass("Enter your AVI password: ")
