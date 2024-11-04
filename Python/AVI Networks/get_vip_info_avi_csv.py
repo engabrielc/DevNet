@@ -171,7 +171,7 @@ async def main():
 
         # Export data to CSV
         export_to_csv(virtual_service_data)
-        print(f"Data exported to 'virtual_services_with_vs_ports.csv' successfully!")
+        print(f"Data exported to 'virtual_services_with_extended_info.csv' successfully!")
 
 # Function to process a tenant's virtual services and gather data asynchronously
 async def process_tenant(session, session_token, tenant, virtual_service_data):
