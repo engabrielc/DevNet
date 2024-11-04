@@ -17,7 +17,7 @@ ssl_context.check_hostname = False
 ssl_context.verify_mode = ssl.CERT_NONE
 
 # Output CSV File
-output_file = 'virtual_services_with_vs_ports.csv'
+output_file = 'virtual_services_with_extended_info.csv'
 
 # Function to authenticate and get session token asynchronously
 async def get_session_token(session, username, password):
@@ -183,10 +183,10 @@ async def main():
             await asyncio.gather(*tasks)
 
         export_to_csv(virtual_service_data)
-        print("Data exported to 'virtual_services_with_vs_ports.csv' successfully!")
+        print("Data exported to 'virtual_services_with_extended_info.csv' successfully!")
 
 # Function to write data to CSV
-def export_to_csv(data, file_name='virtual_services_with_vs_ports.csv'):
+def export_to_csv(data, file_name='virtual_services_with_extended_info.csv'):
     with open(file_name, mode='w', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(['Tenant', 'VIP Name', 'IP', 'Status', 'Pool Name', 'LB Algorithm', 'Server IPs', 'Server Ports', 'VS Ports', 'Value', 'Oper State'])
