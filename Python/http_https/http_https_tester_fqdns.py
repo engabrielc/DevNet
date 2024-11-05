@@ -74,5 +74,5 @@ def main(input_file, output_file):
 
 if __name__ == "__main__":
     input_file = "fqdns.txt"  # Input file with FQDNs
-    output_file = "scan_results.txt"  # Output file for results
+    output_file = "scan_results_fqdn.txt"  # Output file for results
     main(input_file, output_file)
