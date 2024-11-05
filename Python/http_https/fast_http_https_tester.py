@@ -10,25 +10,31 @@ def load_ips(filename):
     with open(filename, 'r') as file:
         return [line.strip() for line in file if line.strip()]
 
-def test_http_https(ip, timeout=3):
-    """Perform HTTP and HTTPS tests on a given IP."""
+def test_http_https(ip, timeout=10, retries=2):
+    """Perform HTTP and HTTPS tests on a given IP with retries."""
     results = [f"Results for {ip}:"]
     
     # Test HTTP
     http_url = f"http://{ip}"
-    try:
-        response = requests.get(http_url, timeout=timeout)
-        results.append(f"  HTTP - Status: {response.status_code}")
-    except requests.RequestException as e:
-        results.append(f"  HTTP - Failed: {e}")
+    for attempt in range(retries + 1):
+        try:
+            response = requests.get(http_url, timeout=timeout)
+            results.append(f"  HTTP - Status: {response.status_code}")
+            break  # Success, so break out of retry loop
+        except requests.RequestException as e:
+            if attempt == retries:
+                results.append(f"  HTTP - Failed after {retries + 1} attempts: {e}")
 
     # Test HTTPS
     https_url = f"https://{ip}"
-    try:
-        response = requests.get(https_url, timeout=timeout, verify=False)  # verify=False to ignore SSL cert issues
-        results.append(f"  HTTPS - Status: {response.status_code}")
-    except requests.RequestException as e:
-        results.append(f"  HTTPS - Failed: {e}")
+    for attempt in range(retries + 1):
+        try:
+            response = requests.get(https_url, timeout=timeout, verify=False)
+            results.append(f"  HTTPS - Status: {response.status_code}")
+            break  # Success, so break out of retry loop
+        except requests.RequestException as e:
+            if attempt == retries:
+                results.append(f"  HTTPS - Failed after {retries + 1} attempts: {e}")
     
     return "\n".join(results)
 
@@ -70,3 +76,4 @@ if __name__ == "__main__":
     input_file = "ips.txt"  # Input file with IP addresses
     output_file = "scan_results.txt"  # Output file for results
     main(input_file, output_file)
+
