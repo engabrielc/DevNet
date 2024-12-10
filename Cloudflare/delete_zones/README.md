@@ -22,7 +22,7 @@ The Cloudflare Python SDK can be found on GitHub at [Cloudflare Python SDK](http
 2. Run the script:
 
 ```bash
-python delete_zone.py
+python delete_zone_SDK.py
 ```
 
 3. The script will prompt you to enter the following information:
