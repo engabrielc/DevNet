@@ -49,7 +49,7 @@ availability zones
     diagrams/
       architecture.py
     README.md
-    Application.png
+    application.png
 
 ------------------------------------------------------------------------
 
