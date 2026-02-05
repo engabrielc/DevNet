@@ -45,6 +45,7 @@ availability zones
       compute/
       load_balancer/
       security/
+      identity/
     diagrams/
       architecture.py
     README.md
