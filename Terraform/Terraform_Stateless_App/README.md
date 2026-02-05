@@ -1,4 +1,4 @@
-# Terraform Stateless Application Deployment (Interview Project)
+# Terraform Stateless Application Deployment
 
 Production-grade Terraform deployment of a stateless application following secure-by-default and zero-trust infrastructure principles.
 
