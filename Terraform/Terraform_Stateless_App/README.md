@@ -10,11 +10,7 @@ stateless containerized application (NGINX hello demo) using Terraform.
 The design focuses on: - High availability - Network security and
 isolation - Scalable load-balanced application hosting -
 Infrastructure-as-Code best practices - Clear architectural
-documentation
-
-This repository was built as part of a technical assessment and
-demonstrates real‑world cloud architecture decisions aligned with
-enterprise security expectations.
+documentation.
 
 ------------------------------------------------------------------------
 
