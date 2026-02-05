@@ -18,15 +18,15 @@ documentation.
 
 The infrastructure deploys:
 
--   VPC with public and private subnets across multiple AZs
--   Internet Gateway for external access
--   NAT Gateways for controlled outbound access from private subnets
--   Route tables enforcing network segmentation
--   Security Groups implementing least‑privilege access
--   Load Balancer deployed in public subnets
--   Stateless containerized application running behind the load balancer
--   Private compute resources not exposed directly to the internet
--   IAM / service roles where required
+-   VPC with public and private subnets across multiple AZs.
+-   Internet Gateway for external access.
+-   NAT Gateways for controlled outbound access from private subnets.
+-   Route tables enforcing network segmentation.
+-   Security Groups implementing least‑privilege access.
+-   Load Balancer deployed in public subnets.
+-   Stateless containerized application running behind the load balancer.
+-   Private compute resources not exposed directly to the internet.
+-   IAM / service roles where required.
 
 Key principles: - No direct public access to compute layer - All ingress
 flows through load balancer - Private subnets for workloads - HA across
