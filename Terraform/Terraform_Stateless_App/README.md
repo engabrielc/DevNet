@@ -46,6 +46,9 @@ availability zones
       architecture.py
     README.md
     application.png
+    main.tf
+    variables.tf
+    outputs.tf
 
 ------------------------------------------------------------------------
 
