@@ -1,0 +1,27 @@
+# Local .terraform directories
+**/.terraform/*
+
+# State files (never commit; use remote state)
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Variable files that may contain secrets
+*.tfvars
+*.tfvars.json
+!*.tfvars.example
+
+# CLI config and plan output
+.terraformrc
+terraform.rc
+*.tfplan
+
+# Lock file is intentionally committed:
+# !.terraform.lock.hcl
+
+# Generated diagrams output (optional)
+diagrams/*.png

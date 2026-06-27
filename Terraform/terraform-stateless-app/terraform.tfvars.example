@@ -1,0 +1,26 @@
+# Copy to terraform.tfvars and adjust. terraform.tfvars is gitignored.
+
+project_name = "stateless-app"
+environment  = "dev"
+region       = "us-east-1"
+
+# Networking
+vpc_cidr           = "10.0.0.0/16"
+az_count           = 2
+single_nat_gateway = false   # set true to save cost in non-prod
+enable_flow_logs   = true
+
+# Compute / autoscaling
+instance_type        = "t3.micro"
+asg_min_size         = 2
+asg_max_size         = 4
+asg_desired_capacity = 2
+container_image      = "nginxdemos/hello:latest"
+
+# TLS (leave empty for HTTP-only demo; set an ACM cert ARN to enable HTTPS)
+certificate_arn            = ""
+enable_deletion_protection = false
+
+tags = {
+  Owner = "platform-team"
+}
