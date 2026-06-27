@@ -1,0 +1,17 @@
+#!/bin/bash
+set -euo pipefail
+
+# Amazon Linux 2023 uses dnf and ships Docker in the default repos
+# (the old `amazon-linux-extras` mechanism is Amazon Linux 2 only).
+dnf update -y
+dnf install -y docker
+
+systemctl enable --now docker
+
+# Run the stateless app container, restarting it automatically on failure
+# or instance reboot.
+docker run -d \
+  --name app \
+  --restart always \
+  -p ${app_port}:80 \
+  ${container_image}
